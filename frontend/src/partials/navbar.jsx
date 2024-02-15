@@ -1,21 +1,23 @@
 import React, { useEffect,useState } from 'react';
-
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    
     const storedUser = localStorage.getItem('user');
-    const user = storedUser ? JSON.parse(storedUser) : null;
-    setUser(user);
-    console.log(user)
+    const parsedUser = storedUser ? JSON.parse(storedUser) : null;
+    setUser(parsedUser);
+    console.log(parsedUser);
+  }, [location]);
 
-  }, []);
 
   const logout = () => {
     localStorage.removeItem('user');
     setUser(null);
+    navigate('/');
   }
 
   return (
@@ -40,7 +42,7 @@ const Navbar = () => {
                         <a className="nav-link" href="/trips/add">Add new trip</a>
                     </li> 
                     <li className="nav-item">
-                        <a className="nav-link"  href="#">Administration</a>
+                        <a className="nav-link"  href="/administration">Administration</a>
                     </li> 
                 </span>}
             </ul>
@@ -51,7 +53,7 @@ const Navbar = () => {
                  ||
                 <div className="d-flex">
                 <a className="nav-link ms-auto me-3" href="/login">Login</a> 
-                <a className="nav-link ms-auto" href="#">Register</a>
+                <a className="nav-link ms-auto" href="/register">Register</a>
                 </div> }
             </div>
         </div>

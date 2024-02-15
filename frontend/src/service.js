@@ -7,6 +7,10 @@ const service = {
         const result = await api.get("/users")
         return result.data;
     },
+    editUser: async(userId, userData) => {
+        await api.patch(`/users/${userId}`, JSON.stringify(userData),
+        {headers: {'Content-Type': 'application/json'}})
+    },
     loadTrips: async() => {
         const result = await api.get("/trips")
         return result.data;

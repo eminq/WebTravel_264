@@ -10,4 +10,4 @@ router.delete('/users/:userId', remove, adminMiddleware, requireLogin)
 router.patch('/users/:userId', edit, adminMiddleware, requireLogin)
 router.post('/users/:userId/:tripId', addTrip, requireLogin)
 
-module.exports = router
+module.exports = router 

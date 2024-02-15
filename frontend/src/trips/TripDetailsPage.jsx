@@ -105,7 +105,7 @@ const TripDetailsPage = () => {
               <p className="card-text"><strong>Price per day: <span className="text-success fs-4">${trip.price}</span></strong></p>
             </div>
             <ul className="list-group list-group-flush">
-                { user && 
+                { user && !trip.travelers.includes(user._id) &&
                 <li className="list-group-item">
                     <button onClick={bookTrip} className="btn btn-success w-100">Book</button>
                 </li>
